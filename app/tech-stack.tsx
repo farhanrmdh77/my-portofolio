@@ -50,48 +50,47 @@ export default function TechStack() {
 
 const techCategories = [
   {
-    title: "Frontend",
-    description: "Frameworks and libraries for building interactive user interfaces.",
+    title: "Front-End & Mobile",
+    description: "Frameworks and libraries for building interactive user interfaces and mobile apps.",
     technologies: [
+      { name: "Flutter", svg: "./icons/flutter.png" },
       { name: "React.js", svg: "./icons/react.svg" },
-      { name: "Next.js", svg: "./icons/nextjs.svg" },
       { name: "Tailwind CSS", svg: "./icons/tailwindcss.svg" },
-      { name: "HTML5", svg: "./icons/html.svg" },
-      { name: "CSS3", svg: "./icons/css.svg" },
-      { name: "Framer Motion", svg: "./icons/framermotion.svg" },
     ],
   },
   {
-    title: "Backend",
+    title: "Back-End",
     description: "Server-side technologies and frameworks.",
     technologies: [
-      { name: "Node.js", svg: "./icons/nodejs.svg" },
-      { name: "Express.js", svg: "./icons/express.svg" },
-      { name: "Go (Golang)", svg: "./icons/go.svg" },
-      { name: "Fiber", svg: "./icons/fiber.svg" },
       { name: "Laravel", svg: "./icons/laravel.svg" },
+      { name: "PHP", svg: "./icons/php.webp" },
+      { name: "Node.js", svg: "./icons/nodejs.svg" },
+      { name: "Express.js", svg: "./icons/express.png" },
     ],
   },
   {
-    title: "Databases & ORM",
-    description: "Database management systems and Object-Relational Mappers.",
+    title: "Databases",
+    description: "Database management systems and cloud databases.",
     technologies: [
-      { name: "MySQL", svg: "./icons/mysql.svg" },
       { name: "PostgreSQL", svg: "./icons/postgresql.svg" },
-      { name: "MongoDB", svg: "./icons/mongodb.svg" },
-      { name: "Prisma ORM", svg: "./icons/prisma.svg" },
+      { name: "MySQL", svg: "./icons/mysql.svg" },
+      { name: "Firebase", svg: "./icons/firebase.png" },
     ],
   },
   {
-    title: "Tools & Infrastructure",
-    description: "Development tools, version control, and deployment.",
+    title: "AI & Data Science",
+    description: "Technologies for machine learning, computer vision, and natural language processing.",
     technologies: [
-      { name: "Git", svg: "./icons/git.svg" },
-      { name: "GitHub", svg: "./icons/github.svg" },
-      { name: "Docker", svg: "./icons/docker.svg" },
-      { name: "Linux", svg: "./icons/linux.svg" },
-      { name: "Nginx", svg: "./icons/nginx.svg" },
-      { name: "Postman", svg: "./icons/postman.svg" },
+      { name: "Python", svg: "./icons/python.webp" },
+      { name: "YOLO", svg: "./icons/yolo.png" },
+      { name: "IndoBERT", svg: "./icons/indobert.png" },
+    ],
+  },
+  {
+    title: "Desain & Prototyping",
+    description: "Tools for UI/UX design and prototyping.",
+    technologies: [
+      { name: "Canva", svg: "./icons/canva.png" },
     ],
   },
 ]

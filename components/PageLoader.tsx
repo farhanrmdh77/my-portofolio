@@ -42,7 +42,7 @@ export default function PageLoader() {
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               className="text-4xl md:text-5xl font-black text-text-primary tracking-tighter"
             >
-              RyHar
+              Frhn77
               <span className="text-thirdary">.</span>
             </motion.div>
           </div>

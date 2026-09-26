@@ -10,37 +10,37 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://ryhar.my.id"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"),
   title: {
-    default: "RyHar | Portfolio",
-    template: "%s | RyHar Portfolio",
+    default: "M. Farhan Ramadhan | Portfolio",
+    template: "%s | Farhan Portfolio",
   },
-  description: "Personal portfolio of RyHar. Software Developer specializing in Next.js, Node.js, and modern web development.",
-  keywords: ["RyHar", "Portfolio", "Software Developer", "Web Development", "Backend", "Frontend", "Next.js", "React", "Node.js"],
-  authors: [{ name: "RyHar" }],
-  creator: "RyHar",
+  description: "Personal portfolio of M. Farhan Ramadhan. Full-Stack Developer & AI Enthusiast specializing in React, Laravel, Python, and modern web development.",
+  keywords: ["Farhan", "Portfolio", "Software Developer", "Full-Stack", "AI Enthusiast", "React", "Next.js", "Laravel", "Python"],
+  authors: [{ name: "M. Farhan Ramadhan" }],
+  creator: "M. Farhan Ramadhan",
   openGraph: {
     type: "website",
     locale: "id_ID",
     url: "/",
-    title: "RyHar | Portfolio",
-    description: "Personal portfolio of RyHar. Software Developer specializing in Next.js, Node.js, and modern web development.",
-    siteName: "RyHar Portfolio",
+    title: "M. Farhan Ramadhan | Portfolio",
+    description: "Personal portfolio of M. Farhan Ramadhan. Full-Stack Developer & AI Enthusiast specializing in React, Laravel, Python, and modern web development.",
+    siteName: "Farhan Portfolio",
     images: [
       {
         url: "/images/hero.jpg",
         width: 1200,
         height: 630,
-        alt: "RyHar Portfolio",
+        alt: "Farhan Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "RyHar | Portfolio",
-    description: "Personal portfolio of RyHar. Software Developer specializing in Next.js, Node.js, and modern web development.",
+    title: "M. Farhan Ramadhan | Portfolio",
+    description: "Personal portfolio of M. Farhan Ramadhan. Full-Stack Developer & AI Enthusiast specializing in React, Laravel, Python, and modern web development.",
     images: ["/images/hero.jpg"],
-    creator: "@RyHar",
+    creator: "@farhanrmdh77",
   },
   icons: {
     icon: "/images/hero.jpg",
