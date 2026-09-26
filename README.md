@@ -1,4 +1,4 @@
-# RyHar Portfolio v2
+# Frhn77 Portfolio 
 
 A modern, interactive, and responsive personal portfolio website built to showcase projects, skills, and experience.
 
