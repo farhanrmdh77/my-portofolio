@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Farhan Portfolio",
     images: [
       {
-        url: "/images/hero.jpg",
+        url: "/profile.jpeg",
         width: 1200,
         height: 630,
         alt: "Farhan Portfolio",
@@ -39,13 +39,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "M. Farhan Ramadhan | Portfolio",
     description: "Personal portfolio of M. Farhan Ramadhan. Full-Stack Developer & AI Enthusiast specializing in React, Laravel, Python, and modern web development.",
-    images: ["/images/hero.jpg"],
+    images: ["/profile.jpeg"],
     creator: "@farhanrmdh77",
   },
   icons: {
-    icon: "/images/hero.jpg",
-    shortcut: "/images/hero.jpg",
-    apple: "/images/hero.jpg",
+    icon: "/profile.jpeg",
+    shortcut: "/profile.jpeg",
+    apple: "/profile.jpeg",
   },
   alternates: {
     canonical: "/",
