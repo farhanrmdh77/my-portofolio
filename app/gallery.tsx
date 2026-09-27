@@ -11,12 +11,24 @@ import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 
 const galleryImages = [
-  "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1000&auto=format&fit=crop"
+  "/images/petro_1.jpeg",
+  "/images/petro_2.jpeg",
+  "/images/petro_3.jpeg",
+  "/images/moment 1.jpg",
+  "/images/moment 2.jpg",
+  "/images/moment 3.jpg",
+  "/images/moment 4.jpg",
+  "/images/moment 5.jpeg",
+  "/images/moment 6.jpg",
+  "/images/moment 7.jpg",
+  "/images/moment 8.jpg",
+  "/images/moment 9.jpg",
+  "/images/moment 10.jpg",
+  "/images/Lomba 1.jpg",
+  "/images/Lomba 2.jpg",
+  "/images/Lomba 3.jpeg",
+  "/images/LCC 2.jpg",
+  "/images/LCC 3.jpg"
 ]
 
 export default function Gallery() {

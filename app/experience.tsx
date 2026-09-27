@@ -11,6 +11,7 @@ interface ExperienceItem {
   description: string
   skills: string[]
   media?: string[]
+  certificate?: string
 }
 
 const workExperiences: ExperienceItem[] = [
@@ -18,31 +19,68 @@ const workExperiences: ExperienceItem[] = [
     id: 1,
     company: "PetroChina International Jabung Ltd.",
     role: "IT & Communication Department",
-    date: "1 - 30 Sep 2026",
+    date: "Sep 1 - 30, 2026",
     description: "Turut berkontribusi dalam operasional dan pengembangan teknologi di departemen IT perusahaan.",
     skills: ["IT Operations", "Technology Development"],
-    media: ["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"]
+    media: ["/images/petro_1.jpeg", "/images/petro_2.jpeg", "/images/petro_3.jpeg"],
+    certificate: "#"
   },
   {
     id: 2,
     company: "BPK Perwakilan Provinsi Jambi",
     role: "Divisi SDM (Human Resource)",
-    date: "3 Feb - 3 Jun 2026",
+    date: "Feb 3 - Jun 3, 2026",
     description: "Membantu optimalisasi pengelolaan sumber daya manusia dan tata kelola arsip digital.",
     skills: ["HR Management", "Digital Archiving"],
-    media: ["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"]
+    media: ["/images/bpk_1.jpeg", "/images/bpk_2.jpeg", "/images/bpk_3.jpeg", "/images/bpk_4.jpeg", "/images/bpk_5.jpeg", "/images/bpk_6.jpeg", "/images/bpk_7.jpeg", "/images/BPK 8.jpeg", "/images/BPK 9.webp"],
+    certificate: "#"
+  },
+  {
+    id: 10,
+    company: "TPQ Langgar At-Taubah",
+    role: "Pengajar Al-Qur'an dan Azan",
+    date: "2020 - Present",
+    description: "Mengajar membaca Al-Qur'an dan praktik azan kepada anak-anak tingkat sekolah dasar (SD) hingga sekolah menengah pertama (SMP) setiap selesai waktu Maghrib.",
+    skills: ["Teaching", "Religious Education", "Mentoring"],
+    media: [
+      "/images/Ngaji 1.jpeg",
+      "/images/Ngaji 2.jpeg",
+      "/images/Ngaji 3.jpg",
+      "/images/Ngaji 4.jpg",
+      "/images/Ngaji 5.jpg",
+    ]
   },
 ]
 
 const leadershipExperiences: ExperienceItem[] = [
   {
     id: 3,
-    company: "Salvador Generation (Alumni Ponpes Al-Hidayah)",
+    company: "Salvador Generation (Alumni PKP Al-Hidayah)",
     role: "Kepanitiaan Acara (Berbagai Peran)",
-    date: "4 Tahun Berturut-turut",
+    date: "4 Consecutive Years",
     description: "Terlibat aktif selama 4 tahun berturut-turut dalam kepanitiaan acara bulan Ramadhan. Peran: Divisi Konsumsi (Tahun Ke-1), Ketua Pelaksana (Tahun Ke-2), Divisi Pubdok (Tahun Ke-3), dan Sekretaris (Tahun Ke-4).",
     skills: ["Leadership", "Event Management"],
-    media: ["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"]
+    media: [
+      "/images/ramadhan 1.jpg",
+      "/images/ramadhan 2.jpg",
+      "/images/ramadhan 3.jpg",
+      "/images/ramadhan 4.jpg",
+      "/images/ramadhan 5.jpg",
+      "/images/ramadhan 6.jpg",
+      "/images/ramadhan 7.jpg",
+      "/images/ramadhan 8.jpg",
+      "/images/ramadhan 9.jpg",
+      "/images/ramadhan 10.jpg",
+      "/images/ramadhan 11.jpg",
+      "/images/ramadhan 12.jpg",
+      "/images/ramadhan 13.jpg",
+      "/images/ramadhan 14.jpeg",
+      "/images/ramadhan 15.jpeg",
+      "/images/ramadhan 16.jpeg",
+      "/images/ramadhan 17.jpg",
+      "/images/ramadhan 18.jpg"
+    ],
+    certificate: "#"
   },
   {
     id: 4,
@@ -51,16 +89,32 @@ const leadershipExperiences: ExperienceItem[] = [
     date: "Present",
     description: "Anggota aktif asosiasi yang berfokus pada pengembangan dan pemberdayaan ekosistem bisnis lokal.",
     skills: ["Community Empowerment", "Local Business"],
-    media: ["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"]
+    media: [
+      "/images/UMKM 1.jpeg",
+      "/images/UMKM 2.jpeg",
+      "/images/UMKM 3.jpeg",
+      "/images/UMKM 4.jpeg"
+    ]
   },
   {
     id: 8,
     company: "PBAK UIN Sulthan Thaha Saifuddin Jambi",
     role: "Divisi Konsumsi",
-    date: "2025",
+    date: "Aug 2025",
     description: "Berpartisipasi dalam kepanitiaan acara pengenalan budaya akademik kampus.",
     skills: ["Event Management", "Teamwork"],
-    media: ["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"]
+    media: [
+      "/images/PBAK 1.jpeg",
+      "/images/PBAK 2.jpeg",
+      "/images/PBAK 3.jpeg",
+      "/images/PBAK 4.jpeg",
+      "/images/PBAK 5.jpg",
+      "/images/PBAK 6.jpg",
+      "/images/PBAK 7.jpg",
+      "/images/PBAK 8.jpeg",
+      "/images/PBAK 9.jpeg",
+      "/images/PBAK 10.jpeg"
+    ]
   },
 ]
 
@@ -69,42 +123,52 @@ const awardExperiences: ExperienceItem[] = [
     id: 5,
     company: "Event DEMAND 7.0, Universitas Jambi",
     role: "Finalis / Juara Harapan 2 Nasional",
-    date: "Mei 2026",
+    date: "May 2026",
     description: "Lomba Poster Infografis: 'Transformasi Ekonomi Regional melalui Reaktualisasi Potensi Budaya Lokal Berbasis Inovasi Digital dan Industri Kreatif'.",
     skills: ["Design", "Infographic"],
-    media: ["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"]
+    media: ["/images/Lomba 3.jpeg"],
+    certificate: "/images/Sertifikat 2.png"
   },
   {
     id: 6,
-    company: "KI-PTKIN & UIN Raden Fatah",
+    company: "KI-PTKIN & UIN Raden Fatah Palembang",
     role: "Juara Favorit 3",
     date: "Jul 2025",
     description: "Lomba Poster Infografis KI-PTKIN se-Indonesia.",
     skills: ["Design", "Infographic"],
-    media: ["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"]
+    media: [
+      "/images/Lomba 1.jpg",
+      "/images/Lomba 2.jpg"
+    ],
+    certificate: "/images/Sertifikat 3.png"
   },
   {
     id: 7,
     company: "UIN Sulthan Thaha Saifuddin Jambi",
     role: "Juara 3 Tingkat Universitas",
-    date: "Mei 2025",
+    date: "May 2025",
     description: "Lomba Cerdas Cermat (LCC) Sistem Informasi Festival 2025.",
     skills: ["Information Systems", "Competition"],
-    media: ["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"]
+    media: [
+      "/images/LCC 2.jpg",
+      "/images/LCC 3.jpg"
+    ],
+    certificate: "/images/Sertifikat LCC.jpg"
   },
   {
     id: 9,
     company: "KST PTKI II, FST UIN Sulthan Thaha Saifuddin Jambi",
     role: "Partisipan - Lomba Poster Infografis",
-    date: "24 April - 8 Juni 2026",
+    date: "April 24 - June 8, 2026",
     description: "Berpartisipasi dalam Lomba Poster Infografis Kompetisi Sains dan Teknologi (KST PTKI) II.",
     skills: ["Design", "Infographic"],
-    media: ["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"]
+    media: ["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1000&auto=format&fit=crop"],
+    certificate: "/images/Sertifikat 1.jpg"
   },
 ]
 
 function ExperienceCard({ exp, index }: { exp: ExperienceItem; index: number }) {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalType, setModalType] = useState<"media" | "certificate" | null>(null)
 
   return (
     <>
@@ -130,15 +194,26 @@ function ExperienceCard({ exp, index }: { exp: ExperienceItem; index: number }) 
             ))}
           </div>
 
-          {exp.media && exp.media.length > 0 && (
-            <div className="mt-2">
-              <button 
-                onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center gap-2 text-sm font-bold text-text-primary transition-colors border border-text-secondary/30 px-4 py-2 rounded-lg hover:bg-text-secondary/10"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-                Lihat Dokumentasi & Sertifikat
-              </button>
+          {(exp.media && exp.media.length > 0 || exp.certificate) && (
+            <div className="mt-2 flex flex-wrap gap-3">
+              {exp.media && exp.media.length > 0 && (
+                <button 
+                  onClick={() => setModalType("media")}
+                  className="inline-flex items-center gap-2 text-sm font-bold text-text-primary transition-colors border border-text-secondary/30 px-4 py-2 rounded-lg hover:bg-text-secondary/10"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                  View Details
+                </button>
+              )}
+              {exp.certificate && (
+                <button 
+                  onClick={() => setModalType("certificate")}
+                  className="inline-flex items-center gap-2 text-sm font-bold text-text-primary transition-colors border border-text-secondary/30 px-4 py-2 rounded-lg hover:bg-text-secondary/10"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                  View Certificate
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -146,13 +221,13 @@ function ExperienceCard({ exp, index }: { exp: ExperienceItem; index: number }) 
 
       {/* Modal */}
       <AnimatePresence>
-        {isModalOpen && (
+        {modalType && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-12">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => setModalType(null)}
               className="absolute inset-0 bg-background/90 backdrop-blur-sm cursor-zoom-out"
             />
             <motion.div
@@ -162,17 +237,32 @@ function ExperienceCard({ exp, index }: { exp: ExperienceItem; index: number }) 
               className="relative z-10 w-full max-w-5xl bg-background border border-text-secondary/10 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
             >
               <div className="flex justify-between items-center p-4 border-b border-text-secondary/10">
-                <h3 className="font-bold text-text-primary">{exp.role} - {exp.company}</h3>
-                <button onClick={() => setIsModalOpen(false)} className="p-2 text-text-secondary hover:text-text-primary bg-text-secondary/5 rounded-full transition-colors">
+                <h3 className="font-bold text-text-primary">
+                  {modalType === "certificate" ? "Certificate" : "Documentation"} - {exp.role}
+                </h3>
+                <button onClick={() => setModalType(null)} className="p-2 text-text-secondary hover:text-text-primary bg-text-secondary/5 rounded-full transition-colors">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                 </button>
               </div>
-              <div className="p-4 md:p-6 overflow-y-auto flex-1">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {exp.media?.map((src, i) => (
-                    <img key={i} src={src} alt={`Dokumentasi ${i + 1}`} className="w-full h-auto rounded-xl border border-text-secondary/10 object-cover" />
-                  ))}
-                </div>
+              <div className="p-4 md:p-6 overflow-y-auto flex-1 custom-scrollbar">
+                {modalType === "media" && exp.media && (
+                  <div className="columns-1 md:columns-2 gap-4">
+                    {exp.media.map((src, i) => (
+                      <img key={i} src={src} alt={`Dokumentasi ${i + 1}`} className="w-full rounded-xl border border-text-secondary/10 mb-4 inline-block" />
+                    ))}
+                  </div>
+                )}
+                {modalType === "certificate" && exp.certificate && (
+                  <div className="flex justify-center items-center">
+                    {exp.certificate === "#" ? (
+                      <div className="w-full aspect-[1.414/1] bg-text-secondary/10 rounded-xl flex items-center justify-center border-2 border-dashed border-text-secondary/30">
+                        <span className="text-text-secondary font-bold tracking-widest uppercase">Certificate Upload Pending</span>
+                      </div>
+                    ) : (
+                      <img src={exp.certificate} alt="Certificate" className="w-full max-w-4xl rounded-xl border border-text-secondary/10" />
+                    )}
+                  </div>
+                )}
               </div>
             </motion.div>
           </div>

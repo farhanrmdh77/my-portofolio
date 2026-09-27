@@ -2,6 +2,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import Hero from "./hero"
 import About from "./about"
+import Education from "./education"
 import Experience from "./experience"
 import Gallery from "./gallery"
 import TechStack from "./tech-stack"
@@ -16,6 +17,7 @@ export default function Home() {
       </header>
       <Hero />
       <About />
+      <Education />
       <Experience />
       <Gallery />
       <TechStack />

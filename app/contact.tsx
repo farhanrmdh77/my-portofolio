@@ -24,32 +24,31 @@ export default function Contact() {
 
 
 
-  // Chatbot State
+  // Guest Book State
   const [isOpenChat, setIsOpenChat] = useState(false)
   const [chatInput, setChatInput] = useState("")
   const [userName, setUserName] = useState("Guest")
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([])
-  const [isChatLoading, setIsChatLoading] = useState(false)
   const chatEndRef = useRef<HTMLDivElement>(null)
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
 
-  // Initialize Chat from LocalStorage
+  // Initialize Guest Book from LocalStorage
   useEffect(() => {
     // Check for saved name
-    const savedName = localStorage.getItem("frhn77_chat_name")
+    const savedName = localStorage.getItem("frhn77_guestbook_name")
     if (savedName) {
       setUserName(savedName)
     } else {
       const newName = `Guest-${Math.floor(Math.random() * 10000)}`
       setUserName(newName)
-      localStorage.setItem("frhn77_chat_name", newName)
+      localStorage.setItem("frhn77_guestbook_name", newName)
     }
 
     // Check for saved messages
-    const savedMessages = localStorage.getItem("frhn77_chat_messages")
+    const savedMessages = localStorage.getItem("frhn77_guestbook_messages")
     if (savedMessages) {
       try {
         const parsed = JSON.parse(savedMessages)
@@ -73,7 +72,7 @@ export default function Contact() {
       {
         id: "welcome-msg",
         sender: "bot",
-        text: "Halo! Saya adalah asisten AI Frhn77. Ada yang bisa saya bantu terkait portofolio, pengalaman, atau project Farhan?",
+        text: "Halo! Selamat datang di Guest Book. Silakan tinggalkan pesan, kesan, atau saran Anda di sini. Pesan Anda akan langsung muncul!",
         timestamp: new Date()
       }
     ])
@@ -82,7 +81,7 @@ export default function Contact() {
   // Save Messages to LocalStorage whenever they change
   useEffect(() => {
     if (chatMessages.length > 0) {
-      localStorage.setItem("frhn77_chat_messages", JSON.stringify(chatMessages))
+      localStorage.setItem("frhn77_guestbook_messages", JSON.stringify(chatMessages))
     }
   }, [chatMessages])
 
@@ -105,110 +104,8 @@ export default function Contact() {
       timestamp: new Date()
     }
 
-    // Build history from existing messages (exclude welcome bot message if it's the only one)
-    const historyMessages = chatMessages.filter(msg => msg.id !== "welcome-msg")
-    const history = [
-      {
-        role: "system" as const,
-        content: `System Context: Kamu adalah Asisten AI pribadi untuk M. Farhan Ramadhan. Tugasmu adalah menjawab pertanyaan pengunjung website portofolio Farhan dengan ramah, profesional, dan informatif menggunakan bahasa Indonesia.
-        
-Gunakan panduan informasi berikut tentang Farhan untuk menjawab pertanyaan:
-
-1. **Profil & Kontak**:
-   - Nama: M. Farhan Ramadhan
-   - Peran: Full-Stack Web Developer & AI Enthusiast
-   - Pendidikan: Universitas Islam Negeri Sulthan Thaha Saifuddin Jambi (IPK: 3.90)
-   - Lokasi: Kota Jambi, Indonesia
-   - Email: farhanrmdh10@gmail.com
-   - WhatsApp/Telepon: +62 895 6067 21625
-   - Instagram: @farhanrmdh77 (instagram.com/farhanrmdh77)
-   - TikTok: @farhanramadhan6996 (tiktok.com/@farhanramadhan6996)
-   - GitHub: github.com/farhanrmdh77
-   - Pendekatan: Mengutamakan pengembangan sistem dari hulu ke hilir dan implementasi Kecerdasan Buatan (AI).
-
-2. **Tech Stack**:
-   - Frontend: React, Next.js, Flutter, Tailwind CSS
-   - Backend & Database: Laravel, PHP, Node.js, Express.js, PostgreSQL, MySQL, Firebase
-   - AI & Data Science: Python, YOLO, IndoBERT
-
-3. **Pengalaman Kerja**:
-   - Web Developer Intern di SKK Migas PetroChina International Jabung Ltd (2024).
-   - Pengelola Data / IT Intern di BPK Perwakilan Provinsi Jambi (2023).
-   - Guru Mengaji (2020 - sekarang).
-
-4. **Proyek Utama**:
-   - SIKANTI (Sistem Informasi Kepegawaian dan Cuti).
-   - GEMARI DIGITAL (Platform digitalisasi produk UMKM).
-   - SetujuAI (Web Deteksi Plagiarisme Dokumen Persetujuan, Hak Cipta Kemenkumham).
-   - SI-PETRO JABUNG (Sistem Pengarsipan dan Pelaporan Cuti Pegawai PetroChina).
-
-Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada di profil ini, dan selalu bersikap ramah.`
-      },
-      ...historyMessages.map(msg => ({
-        role: msg.sender === "user" ? "user" as const : "assistant" as const,
-        content: msg.text
-      }))
-    ]
-
     setChatMessages(prev => [...prev, userMsg])
     setChatInput("")
-    setIsChatLoading(true)
-
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: userText, history }),
-      })
-      
-      if (!response.ok) {
-        const contentType = response.headers.get("Content-Type") || ""
-        if (contentType.includes("application/json")) {
-          const data = await response.json()
-          throw new Error(data.message || "Error dari server")
-        }
-        throw new Error("Network response was not ok")
-      }
-
-      setIsChatLoading(false)
-
-      const botMsgId = (Date.now() + 1).toString()
-      setChatMessages(prev => [...prev, {
-        id: botMsgId,
-        sender: "bot",
-        text: "",
-        timestamp: new Date()
-      }])
-
-      const reader = response.body?.getReader()
-      const decoder = new TextDecoder()
-      let botText = ""
-
-      if (reader) {
-        while (true) {
-          const { done, value } = await reader.read()
-          if (done) break
-          
-          botText += decoder.decode(value, { stream: true })
-          setChatMessages(prev => 
-            prev.map(msg => 
-              msg.id === botMsgId ? { ...msg, text: botText } : msg
-            )
-          )
-        }
-      }
-
-    } catch (error) {
-      console.error("Chat error:", error)
-      setChatMessages(prev => [...prev, {
-        id: (Date.now() + 1).toString(),
-        sender: "bot",
-        text: "Maaf, terjadi kesalahan koneksi atau server AI.",
-        timestamp: new Date()
-      }])
-    } finally {
-      setIsChatLoading(false)
-    }
   }
 
   const showAlert = useCallback((type: AlertType, message: string) => {
@@ -348,20 +245,20 @@ Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada d
         </FadeDown>
       </div>
 
-      {/* Floating Chatbot Button */}
+      {/* Floating Guest Book Button */}
       <div className="fixed bottom-6 right-6 lg:bottom-12 lg:right-12 z-40">
         <button onClick={() => setIsOpenChat(true)} className="group bg-text-primary text-background p-4 md:p-5 rounded-full shadow-2xl hover:-translate-y-2 transition-all duration-300 flex items-center justify-center relative border-4 border-background hover:shadow-text-primary/20">
           <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
           </svg>
           <span className="absolute -top-2 -right-2 flex h-5 w-5 md:h-6 md:w-6">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-5 w-5 md:h-6 md:w-6 bg-thirdary text-text-primary border border-text-secondary/20 text-[10px] md:text-xs font-bold items-center justify-center">AI</span>
+            <span className="relative inline-flex rounded-full h-5 w-5 md:h-6 md:w-6 bg-thirdary text-text-primary border border-text-secondary/20 text-[10px] md:text-xs font-bold items-center justify-center">GB</span>
           </span>
         </button>
       </div>
 
-      {/* Chatbot Modal Overlay */}
+      {/* Guest Book Modal Overlay */}
       <div className={`fixed inset-0 z-50 flex items-center justify-center p-0 transition-all duration-500 ${isOpenChat ? "opacity-100 visible" : "opacity-0 invisible"}`}>
         {/* Backdrop */}
         <div className={`absolute inset-0 bg-background/90 backdrop-blur-xl transition-opacity duration-500 ${isOpenChat ? "opacity-100" : "opacity-0"}`} onClick={() => setIsOpenChat(false)}></div>
@@ -371,11 +268,13 @@ Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada d
           {/* Header */}
           <div className="flex justify-between items-center p-4 md:p-6 border-b border-text-secondary/10 bg-background relative z-20">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-thirdary flex items-center justify-center text-text-primary font-black border border-text-secondary/10">AI</div>
+              <div className="w-10 h-10 rounded-full bg-thirdary flex items-center justify-center text-text-primary font-black border border-text-secondary/10">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+              </div>
               <div>
-                <h3 className="text-lg font-black text-text-primary tracking-tight leading-none">Frhn77 Assistant</h3>
+                <h3 className="text-lg font-black text-text-primary tracking-tight leading-none">Guest Book</h3>
                 <span className="text-xs text-green-500 font-bold flex items-center gap-1 mt-1">
-                  <span className="w-2 h-2 rounded-full bg-green-500 block animate-pulse"></span> Online
+                  <span className="w-2 h-2 rounded-full bg-green-500 block"></span> Live
                 </span>
               </div>
             </div>
@@ -404,45 +303,51 @@ Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada d
               <div key={msg.id} className={`flex w-full ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
                 <div className={`max-w-[85%] rounded-2xl px-5 py-3 ${msg.sender === "user" ? "bg-text-primary text-background rounded-tr-sm" : "bg-background border border-text-secondary/10 text-text-primary rounded-tl-sm shadow-sm"}`}>
                   {msg.sender === "user" ? (
-                    <p className="text-sm font-medium leading-relaxed whitespace-pre-wrap">{msg.text}</p>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] font-bold text-background/70 mb-1 opacity-70">{userName}</span>
+                      <p className="text-sm font-medium leading-relaxed whitespace-pre-wrap">{msg.text}</p>
+                    </div>
                   ) : (
-                    <div className="text-sm font-medium leading-relaxed prose prose-sm max-w-none prose-p:my-1 prose-headings:mb-2 prose-headings:mt-3 prose-a:text-text-primary prose-code:bg-text-secondary/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs overflow-hidden">
-                      <ReactMarkdown 
-                        remarkPlugins={[remarkGfm]}
-                        components={{
-                          p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
-                          strong: ({node, ...props}) => <strong className="font-bold text-text-primary" {...props} />,
-                          em: ({node, ...props}) => <em className="italic" {...props} />,
-                          ul: ({node, ...props}) => <ul className="list-disc ml-4 mb-2 space-y-1" {...props} />,
-                          ol: ({node, ...props}) => <ol className="list-decimal ml-4 mb-2 space-y-1" {...props} />,
-                          li: ({node, ...props}) => <li className="" {...props} />,
-                          a: ({node, ...props}) => <a className="text-text-primary underline hover:opacity-80 font-bold" target="_blank" rel="noopener noreferrer" {...props} />,
-                          table: ({node, ...props}) => (
-                            <div className="w-full overflow-x-auto my-3 pb-1 custom-scrollbar">
-                              <table className="w-full text-left border-collapse border border-text-secondary/20 whitespace-nowrap" {...props} />
-                            </div>
-                          ),
-                          th: ({node, ...props}) => <th className="border border-text-secondary/20 px-3 py-2 bg-text-secondary/10 font-bold" {...props} />,
-                          td: ({node, ...props}) => <td className="border border-text-secondary/20 px-3 py-2" {...props} />,
-                          code: ({node, inline, className, children, ...props}: any) => {
-                            const match = /language-(\w+)/.exec(className || '')
-                            return !inline ? (
-                              <pre className="bg-text-primary text-background p-3 rounded-xl overflow-x-auto custom-scrollbar text-xs my-2 font-mono">
-                                <code className={className} {...props}>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] font-bold text-text-secondary/70 mb-1">Farhan</span>
+                      <div className="text-sm font-medium leading-relaxed prose prose-sm max-w-none prose-p:my-1 prose-headings:mb-2 prose-headings:mt-3 prose-a:text-text-primary prose-code:bg-text-secondary/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs overflow-hidden">
+                        <ReactMarkdown 
+                          remarkPlugins={[remarkGfm]}
+                          components={{
+                            p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
+                            strong: ({node, ...props}) => <strong className="font-bold text-text-primary" {...props} />,
+                            em: ({node, ...props}) => <em className="italic" {...props} />,
+                            ul: ({node, ...props}) => <ul className="list-disc ml-4 mb-2 space-y-1" {...props} />,
+                            ol: ({node, ...props}) => <ol className="list-decimal ml-4 mb-2 space-y-1" {...props} />,
+                            li: ({node, ...props}) => <li className="" {...props} />,
+                            a: ({node, ...props}) => <a className="text-text-primary underline hover:opacity-80 font-bold" target="_blank" rel="noopener noreferrer" {...props} />,
+                            table: ({node, ...props}) => (
+                              <div className="w-full overflow-x-auto my-3 pb-1 custom-scrollbar">
+                                <table className="w-full text-left border-collapse border border-text-secondary/20 whitespace-nowrap" {...props} />
+                              </div>
+                            ),
+                            th: ({node, ...props}) => <th className="border border-text-secondary/20 px-3 py-2 bg-text-secondary/10 font-bold" {...props} />,
+                            td: ({node, ...props}) => <td className="border border-text-secondary/20 px-3 py-2" {...props} />,
+                            code: ({node, inline, className, children, ...props}: any) => {
+                              const match = /language-(\w+)/.exec(className || '')
+                              return !inline ? (
+                                <pre className="bg-text-primary text-background p-3 rounded-xl overflow-x-auto custom-scrollbar text-xs my-2 font-mono">
+                                  <code className={className} {...props}>
+                                    {children}
+                                  </code>
+                                </pre>
+                              ) : (
+                                <code className="bg-thirdary/30 px-1.5 py-0.5 rounded text-xs text-text-primary font-mono font-bold" {...props}>
                                   {children}
                                 </code>
-                              </pre>
-                            ) : (
-                              <code className="bg-thirdary/30 px-1.5 py-0.5 rounded text-xs text-text-primary font-mono font-bold" {...props}>
-                                {children}
-                              </code>
-                            )
-                          },
-                          blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-thirdary pl-3 my-2 italic text-text-secondary" {...props} />
-                        }}
-                      >
-                        {msg.text}
-                      </ReactMarkdown>
+                              )
+                            },
+                            blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-thirdary pl-3 my-2 italic text-text-secondary" {...props} />
+                          }}
+                        >
+                          {msg.text}
+                        </ReactMarkdown>
+                      </div>
                     </div>
                   )}
                   <span className={`text-[10px] uppercase font-bold tracking-wider mt-2 block ${msg.sender === "user" ? "text-background/70" : "text-text-secondary/70"}`}>
@@ -451,33 +356,23 @@ Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada d
                 </div>
               </div>
             ))}
-            {isChatLoading && (
-              <div className="flex w-full justify-start">
-                <div className="max-w-[85%] bg-background border border-text-secondary/10 rounded-2xl rounded-tl-sm px-5 py-4 shadow-sm flex gap-1.5 items-center">
-                  <div className="w-2 h-2 rounded-full bg-text-secondary/40 animate-bounce" style={{ animationDelay: "0ms" }}></div>
-                  <div className="w-2 h-2 rounded-full bg-text-secondary/40 animate-bounce" style={{ animationDelay: "150ms" }}></div>
-                  <div className="w-2 h-2 rounded-full bg-text-secondary/40 animate-bounce" style={{ animationDelay: "300ms" }}></div>
-                </div>
-              </div>
-            )}
             <div ref={chatEndRef} />
             </div>
           </div>
 
-          {/* Chat Input */}
+          {/* Guest Book Input */}
           <div className="p-4 border-t border-text-secondary/10 bg-background flex justify-center">
             <form onSubmit={handleSendChat} className="flex gap-2 w-full max-w-4xl">
               <input 
                 type="text" 
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
-                placeholder="Ask me anything..." 
+                placeholder="Tulis pesan Anda..." 
                 className="flex-1 bg-thirdary/30 border border-text-secondary/20 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-text-primary text-text-primary font-medium transition-colors"
-                disabled={isChatLoading}
               />
               <button 
                 type="submit" 
-                disabled={!chatInput.trim() || isChatLoading}
+                disabled={!chatInput.trim()}
                 className="bg-text-primary text-background p-3 rounded-xl hover:-translate-y-0.5 transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

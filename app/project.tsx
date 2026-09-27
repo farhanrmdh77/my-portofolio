@@ -68,11 +68,13 @@ export default function Project() {
                       <span className="w-8 h-[2px] bg-text-primary group-hover/btn:w-12 transition-all duration-300"></span>
                     </button>
 
-                    <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="p-2 border border-text-secondary/20 rounded-full text-text-secondary hover:text-background hover:bg-text-primary hover:border-text-primary transition-all duration-300">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
+                    {project.liveDemoUrl !== "#" && (
+                      <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="p-2 border border-text-secondary/20 rounded-full text-text-secondary hover:text-background hover:bg-text-primary hover:border-text-primary transition-all duration-300">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
                   </div>
                 </div>
               </GlareHover>
@@ -117,11 +119,13 @@ export default function Project() {
                           <span className="w-8 h-[2px] bg-text-primary group-hover/btn:w-12 transition-all duration-300"></span>
                         </button>
 
-                        <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="p-2 border border-text-secondary/20 rounded-full text-text-secondary hover:text-background hover:bg-text-primary hover:border-text-primary transition-all duration-300">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </a>
+                        {project.liveDemoUrl !== "#" && (
+                          <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="p-2 border border-text-secondary/20 rounded-full text-text-secondary hover:text-background hover:bg-text-primary hover:border-text-primary transition-all duration-300">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </a>
+                        )}
                       </div>
                     </div>
                   </GlareHover>
@@ -163,11 +167,13 @@ export default function Project() {
                           <span className="w-8 h-[2px] bg-text-primary group-hover/btn:w-12 transition-all duration-300"></span>
                         </button>
 
-                        <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="p-2 border border-text-secondary/20 rounded-full text-text-secondary hover:text-background hover:bg-text-primary hover:border-text-primary transition-all duration-300">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </a>
+                        {project.liveDemoUrl !== "#" && (
+                          <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="p-2 border border-text-secondary/20 rounded-full text-text-secondary hover:text-background hover:bg-text-primary hover:border-text-primary transition-all duration-300">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </a>
+                        )}
                       </div>
                     </div>
                   </GlareHover>
@@ -240,9 +246,18 @@ export default function Project() {
 
                 {/* Modal Footer */}
                 <div className="p-6 border-t border-text-secondary/10 flex flex-col sm:flex-row gap-4 bg-background">
-                  <a href={activeProject.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="flex-1 text-center font-bold text-sm tracking-widest uppercase bg-text-primary text-background py-4 rounded-xl hover:-translate-y-1 transition-transform duration-300">
-                    Live Demo
-                  </a>
+                  {activeProject.liveDemoUrl !== "#" ? (
+                    <a href={activeProject.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="flex-1 text-center font-bold text-sm tracking-widest uppercase bg-text-primary text-background py-4 rounded-xl hover:-translate-y-1 transition-transform duration-300">
+                      Live Demo
+                    </a>
+                  ) : (
+                    <button disabled className="flex-1 flex justify-center items-center gap-2 text-center font-bold text-sm tracking-widest uppercase border-2 border-text-secondary/20 text-text-secondary opacity-50 cursor-not-allowed py-4 rounded-xl">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      Private / Offline
+                    </button>
+                  )}
                   {activeProject.isPrivateRepo ? (
                     <button disabled className="flex-1 flex justify-center items-center gap-2 text-center font-bold text-sm tracking-widest uppercase border-2 border-text-secondary/20 text-text-secondary opacity-50 cursor-not-allowed py-4 rounded-xl">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -268,62 +283,62 @@ export default function Project() {
 const projectList = [
   {
     index: 0,
-    imagePath: "/images/hero.jpg",
+    imagePath: "/images/SIKANTI.png",
     title: "SIKANTI (Katalog Arsip dan Naskah)",
     shortDescription: "Sistem pengarsipan dokumen elektronik berbasis web yang dirancang khusus untuk Subbagian SDM BPK Perwakilan Provinsi Jambi menggunakan Laravel dan PHP.",
     createdAt: "2026",
     features: ["Digital Archiving", "Document Management", "SDM Optimization"],
     tech: ["Laravel", "PHP", "MySQL", "Tailwind CSS"],
-    githubUrl: "#",
+    githubUrl: "https://github.com/farhanrmdh77/SIKANTI_v2",
     liveDemoUrl: "#",
-    isPrivateRepo: true,
+    isPrivateRepo: false,
   },
   {
     index: 1,
-    imagePath: "/images/hero.jpg",
-    title: "GEMARI DIGITAL (SILOKO)",
+    imagePath: "/images/GEMARI DIGITAL.png",
+    title: "GEMARI DIGITAL",
     shortDescription: "Aplikasi manajemen magang (PKL) berbasis web yang mendigitalisasi dan mengotomatisasi seluruh alur administrasi pengelolaan peserta magang secara terpusat.",
     createdAt: "2026",
     features: ["Centralized Administration", "Automated Workflows", "Intern Management"],
-    tech: ["Laravel", "React", "PostgreSQL"],
-    githubUrl: "#",
+    tech: ["Laravel", "PHP", "MySQL", "Tailwind CSS"],
+    githubUrl: "https://github.com/farhanrmdh77/GEMARI_DIGITAL",
     liveDemoUrl: "#",
-    isPrivateRepo: true,
+    isPrivateRepo: false,
   },
   {
     index: 2,
-    imagePath: "/images/hero.jpg",
+    imagePath: "/images/SetujuAI.png",
     title: "SetujuAI",
     shortDescription: "Platform mobile dan web berbasis AI untuk mendukung branding produk lokal (UMKM). Telah ditetapkan dan diakui Hak Ciptanya oleh Kemenkumham Jambi.",
     createdAt: "2026",
     features: ["YOLOv8 Quality Control", "IndoBERT Sentiment Analysis", "Local Business Empowerment"],
-    tech: ["Flutter", "Python", "YOLOv8", "IndoBERT"],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL", "FastAPI", "Python","IndoBERT (NLP)"],
     githubUrl: "#",
     liveDemoUrl: "#",
     isPrivateRepo: true,
   },
   {
     index: 3,
-    imagePath: "/images/hero.jpg",
+    imagePath: "/images/SI_PETRO JABUNG.png",
     title: "SI-PETRO JABUNG",
     shortDescription: "Sistem ticketing IT Helpdesk untuk PetroChina International Jabung Ltd. dengan akses multi-peran (karyawan, teknisi, dan superadmin).",
     createdAt: "2026",
     features: ["Multi-role Access", "IT Helpdesk Ticketing", "Real-time Tracking"],
-    tech: ["Vite", "Tailwind CSS", "PostgreSQL", "Node.js"],
-    githubUrl: "#",
+    tech: ["React.js", "Tailwind CSS", "PostgreSQL", "Node.js"],
+    githubUrl: "https://github.com/Nopal1305/helpdesk",
     liveDemoUrl: "#",
-    isPrivateRepo: true,
+    isPrivateRepo: false,
   },
   {
     index: 4,
-    imagePath: "/images/hero.jpg",
+    imagePath: "/images/Knowledge Game.png",
     title: "Knowledge Game",
     shortDescription: "Aplikasi edukasi berbasis PWA yang memadukan materi pembelajaran dengan mekanik game (sistem XP, hadiah, leaderboard).",
-    createdAt: "2025",
+    createdAt: "2026",
     features: ["PWA", "Gamification", "XP & Leaderboard"],
-    tech: ["React", "Firebase", "Tailwind CSS"],
-    githubUrl: "#",
-    liveDemoUrl: "#",
+    tech: ["HTML", "Firebase", "JavaScript"],
+    githubUrl: "https://github.com/farhanrmdh77/Quiz_Game",
+    liveDemoUrl: "https://quiz-game-pi-eight.vercel.app/",
     isPrivateRepo: false,
   },
 ]
