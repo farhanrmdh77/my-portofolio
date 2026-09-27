@@ -80,7 +80,7 @@ const leadershipExperiences: ExperienceItem[] = [
       "/images/ramadhan 17.jpg",
       "/images/ramadhan 18.jpg"
     ],
-    certificate: "#"
+    certificate: "/images/Sertifikat Panitia RBS.jpg"
   },
   {
     id: 4,
