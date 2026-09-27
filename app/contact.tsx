@@ -12,6 +12,7 @@ interface ChatMessage {
   sender: "user" | "bot"
   text: string
   timestamp: Date
+  userName?: string
 }
 
 export default function Contact() {
@@ -35,7 +36,7 @@ export default function Contact() {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
 
-  // Initialize Guest Book from LocalStorage
+  // Initialize Guest Book
   useEffect(() => {
     // Check for saved name
     const savedName = localStorage.getItem("frhn77_guestbook_name")
@@ -46,44 +47,51 @@ export default function Contact() {
       setUserName(newName)
       localStorage.setItem("frhn77_guestbook_name", newName)
     }
+  }, [])
 
-    // Check for saved messages
-    const savedMessages = localStorage.getItem("frhn77_guestbook_messages")
-    if (savedMessages) {
-      try {
-        const parsed = JSON.parse(savedMessages)
-        // Convert timestamp strings back to Date objects
-        const formattedMessages = parsed.map((msg: any) => ({
+  const fetchMessages = async () => {
+    try {
+      const res = await fetch('/api/guestbook')
+      if (res.ok) {
+        const data = await res.json()
+        const formattedMessages = data.map((msg: any) => ({
           ...msg,
           timestamp: new Date(msg.timestamp)
         }))
-        setChatMessages(formattedMessages)
-      } catch (e) {
-        console.error("Failed to parse saved messages", e)
-        setInitialWelcomeMessage()
+        if (formattedMessages.length === 0) {
+          setInitialWelcomeMessage()
+        } else {
+          setChatMessages(formattedMessages)
+        }
       }
-    } else {
-      setInitialWelcomeMessage()
+    } catch (error) {
+      console.error("Failed to fetch messages", error)
     }
-  }, [])
-  
+  }
+
+  // Poll for new messages when chat is open
+  useEffect(() => {
+    let interval: NodeJS.Timeout
+    if (isOpenChat) {
+      fetchMessages() // Fetch immediately on open
+      interval = setInterval(fetchMessages, 3000) // Poll every 3 seconds
+    }
+    return () => {
+      if (interval) clearInterval(interval)
+    }
+  }, [isOpenChat])
+
   const setInitialWelcomeMessage = () => {
     setChatMessages([
       {
         id: "welcome-msg",
         sender: "bot",
         text: "Halo! Selamat datang di Guest Book. Silakan tinggalkan pesan, kesan, atau saran Anda di sini. Pesan Anda akan langsung muncul!",
-        timestamp: new Date()
+        timestamp: new Date(),
+        userName: "Farhan"
       }
     ])
   }
-
-  // Save Messages to LocalStorage whenever they change
-  useEffect(() => {
-    if (chatMessages.length > 0) {
-      localStorage.setItem("frhn77_guestbook_messages", JSON.stringify(chatMessages))
-    }
-  }, [chatMessages])
 
   useEffect(() => {
     if (isOpenChat) {
@@ -101,11 +109,23 @@ export default function Contact() {
       id: Date.now().toString(),
       sender: "user",
       text: userText,
-      timestamp: new Date()
+      timestamp: new Date(),
+      userName: userName
     }
 
     setChatMessages(prev => [...prev, userMsg])
     setChatInput("")
+
+    // Send to DB
+    try {
+      await fetch('/api/guestbook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userMsg)
+      })
+    } catch (error) {
+      console.error("Failed to post message", error)
+    }
   }
 
   const showAlert = useCallback((type: AlertType, message: string) => {
@@ -135,7 +155,7 @@ export default function Contact() {
               </div>
               <iframe
                 src="https://maps.google.com/maps?q=Lorong+Semangka+No.176,+Kenali+Besar,+Kec.+Kota+Baru,+Kota+Jambi,+Jambi+36129&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                className="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full border-0 transition-all duration-700"
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -304,12 +324,12 @@ export default function Contact() {
                 <div className={`max-w-[85%] rounded-2xl px-5 py-3 ${msg.sender === "user" ? "bg-text-primary text-background rounded-tr-sm" : "bg-background border border-text-secondary/10 text-text-primary rounded-tl-sm shadow-sm"}`}>
                   {msg.sender === "user" ? (
                     <div className="flex flex-col">
-                      <span className="text-[10px] font-bold text-background/70 mb-1 opacity-70">{userName}</span>
+                      <span className="text-[10px] font-bold text-background/70 mb-1 opacity-70">{msg.userName || "Guest"}</span>
                       <p className="text-sm font-medium leading-relaxed whitespace-pre-wrap">{msg.text}</p>
                     </div>
                   ) : (
                     <div className="flex flex-col">
-                      <span className="text-[10px] font-bold text-text-secondary/70 mb-1">Farhan</span>
+                      <span className="text-[10px] font-bold text-text-secondary/70 mb-1">{msg.userName || "Farhan"}</span>
                       <div className="text-sm font-medium leading-relaxed prose prose-sm max-w-none prose-p:my-1 prose-headings:mb-2 prose-headings:mt-3 prose-a:text-text-primary prose-code:bg-text-secondary/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs overflow-hidden">
                         <ReactMarkdown 
                           remarkPlugins={[remarkGfm]}

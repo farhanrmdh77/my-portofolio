@@ -19,7 +19,7 @@ const educationData: EducationItem[] = [
     degree: "S1 Sistem Informasi",
     date: "2023 - Present",
     description: "Aktif mengikuti berbagai lomba akademik maupun non-akademik tingkat kampus dan luar kampus.",
-    skills: ["Sistem Informasi", "Akademik", "Kompetisi"],
+    skills: ["Information Systems", "Academic", "Competitions"],
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const educationData: EducationItem[] = [
     degree: "Jurusan IPA (Ilmu Pengetahuan Alam)",
     date: "2020 - 2023",
     description: "Awardee Pengurus Terbaik 2021. Aktif sebagai Anggota Ekstrakurikuler Ambalan Pramuka dan pengurus Organisasi Santri Al-Hidayah 2022-2023.",
-    skills: ["Kepemimpinan", "Organisasi", "Pramuka"],
+    skills: ["Leadership", "Organization", "Scouts"],
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const educationData: EducationItem[] = [
     degree: "Pendidikan Menengah Pertama",
     date: "2017 - 2020",
     description: "Menempuh pendidikan menengah pertama dengan pembekalan nilai-nilai keagamaan dan kedisiplinan sebagai santri.",
-    skills: ["Disiplin", "Pendidikan Agama"],
+    skills: ["Discipline", "Religious Education"],
   },
 ]
 
