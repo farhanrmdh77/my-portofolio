@@ -44,7 +44,7 @@ const workExperiences: ExperienceItem[] = [
     date: "Feb 3 - Jun 3, 2026",
     description: "Membantu optimalisasi pengelolaan sumber daya manusia dan tata kelola arsip digital.",
     skills: ["HR Management", "Digital Archiving"],
-    media: ["/images/bpk_1.jpeg", "/images/bpk_2.jpeg", "/images/bpk_3.jpeg", "/images/bpk_4.jpeg", "/images/bpk_5.jpeg", "/images/bpk_6.jpeg", "/images/bpk_7.jpeg", "/images/BPK 8.jpeg", "/images/BPK 9.webp", "/images/BPK J1.jpeg", "/images/BPK J2.jpeg", "/images/BPK J3.jpeg", "/images/BPK J4.jpeg"],
+    media: ["/images/bpk_1.jpeg", "/images/bpk_2.jpeg", "/images/bpk_3.jpeg", "/images/bpk_4.jpeg", "/images/bpk_5.jpeg", "/images/bpk_6.jpeg", "/images/bpk_7.jpeg", "/images/BPK 8.jpeg", "/images/BPK 9.webp", "/images/BPK J1.jpeg", "/images/BPK J2.jpeg", "/images/BPK J3.jpeg", "/images/BPK J4.jpg"],
     certificate: "#"
   },
   {
