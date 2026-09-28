@@ -22,7 +22,19 @@ const workExperiences: ExperienceItem[] = [
     date: "Sep 1 - 30, 2026",
     description: "Turut berkontribusi dalam operasional dan pengembangan teknologi di departemen IT perusahaan.",
     skills: ["IT Operations", "Technology Development"],
-    media: ["/images/petro_1.jpeg", "/images/petro_2.jpeg", "/images/petro_3.jpeg"],
+    media: ["/images/petro_1.jpeg", 
+            "/images/petro_2.jpeg", 
+            "/images/petro_3.jpeg",
+            "/images/AhaConvert_PetroChina 1.jpg",
+            "/images/AhaConvert_PetroChina 2.jpg",
+            "/images/AhaConvert_PetroChina 3.jpg",
+            "/images/AhaConvert_PetroChina 4.jpg",
+            "/images/AhaConvert_PetroChina 5.jpg",
+            "/images/AhaConvert_PetroChina 6.jpg",
+            "/images/AhaConvert_PetroChina 7.jpg",
+            "/images/AhaConvert_PetroChina 8.jpg",
+            "/images/AhaConvert_PetroChina 9.jpg",
+    ],
     certificate: "#"
   },
   {
@@ -126,13 +138,16 @@ const awardExperiences: ExperienceItem[] = [
     date: "May 2026",
     description: "Lomba Poster Infografis: 'Transformasi Ekonomi Regional melalui Reaktualisasi Potensi Budaya Lokal Berbasis Inovasi Digital dan Industri Kreatif'.",
     skills: ["Design", "Infographic"],
-    media: ["/images/Lomba 3.jpeg"],
+    media: [
+      "/images/Lomba 3.jpeg",
+      "/images/Poster 1.jpeg"
+    ],
     certificate: "/images/Sertifikat 2.png"
   },
   {
     id: 6,
     company: "KI-PTKIN & UIN Raden Fatah Palembang",
-    role: "Juara Favorit 3",
+    role: "Juara Favorit 3 Nasional",
     date: "Jul 2025",
     description: "Lomba Poster Infografis KI-PTKIN se-Indonesia.",
     skills: ["Design", "Infographic"],
