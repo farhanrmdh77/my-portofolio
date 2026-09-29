@@ -24,7 +24,7 @@ const galleryImages = [
   "/images/moment 1.jpg",
   "/images/moment 2.jpg",
   "/images/moment 3.jpg",
-  "/images/moment 4.jpg",
+  "/images/moment 4.jpeg",
   "/images/moment 5.jpeg",
   "/images/moment 6.jpg",
   "/images/moment 7.jpg",
@@ -66,9 +66,9 @@ export default function Gallery() {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          pagination={{ clickable: true }}
+          pagination={{ clickable: true, dynamicBullets: true }}
           modules={[EffectCoverflow, Pagination, Autoplay]}
-          className="w-full h-full !pb-12"
+          className="w-full h-full !pb-20"
         >
           {galleryImages.map((src, index) => (
             <SwiperSlide key={index} className="!w-[300px] md:!w-[500px] lg:!w-[600px] aspect-[4/3]">
@@ -87,6 +87,9 @@ export default function Gallery() {
       
       {/* Custom Styles for Swiper Pagination */}
       <style dangerouslySetInnerHTML={{__html: `
+        .swiper-pagination {
+          bottom: 0px !important;
+        }
         .swiper-pagination-bullet {
           background-color: var(--color-text-secondary);
           opacity: 0.5;

@@ -25,12 +25,12 @@ export default function TechStack() {
               {category.technologies.map((tech, techIdx) => (
                 <FadeUp key={techIdx} delay={idx * 0.1 + techIdx * 0.05}>
                   <div className="group flex flex-col items-center justify-center p-6 bg-thirdary/20 hover:bg-thirdary/50 border border-text-secondary/10 hover:border-text-primary/50 rounded-2xl transition-all duration-300 hover:-translate-y-2 h-full">
-                    <div className="w-12 h-12 mb-4 transition-colors flex items-center justify-center pointer-events-none">
+                    <div className="w-16 h-16 mb-4 transition-colors flex items-center justify-center pointer-events-none">
                       {tech.svg ? (
                         tech.svg.startsWith("<") ? (
-                          <div className="w-full h-full" dangerouslySetInnerHTML={{ __html: tech.svg }} />
+                          <div className="w-full h-full flex items-center justify-center" dangerouslySetInnerHTML={{ __html: tech.svg }} />
                         ) : (
-                          <img src={tech.svg} alt={tech.name} className="w-full h-full tech-icon-img" />
+                          <img src={tech.svg} alt={tech.name} className="w-full h-full object-contain rounded-lg tech-icon-img" />
                         )
                       ) : (
                         <div className="w-full h-full flex items-center justify-center font-bold text-xl bg-thirdary/50 rounded-lg">{tech.name.charAt(0)}</div>
@@ -55,6 +55,7 @@ const techCategories = [
     technologies: [
       { name: "Flutter", svg: "./icons/flutter.png" },
       { name: "React.js", svg: "./icons/react.svg" },
+      { name: "Next.js", svg: "./icons/nextjs.svg" },
       { name: "Tailwind CSS", svg: "./icons/tailwindcss.svg" },
     ],
   },
