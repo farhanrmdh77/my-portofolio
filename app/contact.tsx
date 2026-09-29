@@ -58,11 +58,15 @@ export default function Contact() {
           ...msg,
           timestamp: new Date(msg.timestamp)
         }))
-        if (formattedMessages.length === 0) {
-          setInitialWelcomeMessage()
-        } else {
-          setChatMessages(formattedMessages)
+        const welcomeMsg: ChatMessage = {
+          id: "welcome-msg",
+          sender: "bot",
+          text: "Halo! Selamat datang di Guest Book saya 👋\n\nSilakan tinggalkan pesan, kesan, saran, atau sekadar menyapa di sini. Pesan Anda akan langsung tersimpan secara *live*!\n\nTerima kasih sudah mampir! ✨",
+          timestamp: new Date(),
+          userName: "M. Farhan Ramadhan"
         }
+
+        setChatMessages([welcomeMsg, ...formattedMessages])
       }
     } catch (error) {
       console.error("Failed to fetch messages", error)
@@ -86,9 +90,9 @@ export default function Contact() {
       {
         id: "welcome-msg",
         sender: "bot",
-        text: "Halo! Selamat datang di Guest Book. Silakan tinggalkan pesan, kesan, atau saran Anda di sini. Pesan Anda akan langsung muncul!",
+        text: "Halo! Selamat datang di Guest Book saya 👋\n\nSilakan tinggalkan pesan, kesan, saran, atau sekadar menyapa di sini. Pesan Anda akan langsung tersimpan secara *live*!\n\nTerima kasih sudah mampir! ✨",
         timestamp: new Date(),
-        userName: "Farhan"
+        userName: "M. Farhan Ramadhan"
       }
     ])
   }
@@ -370,9 +374,11 @@ export default function Contact() {
                       </div>
                     </div>
                   )}
-                  <span className={`text-[10px] uppercase font-bold tracking-wider mt-2 block ${msg.sender === "user" ? "text-background/70" : "text-text-secondary/70"}`}>
-                    {msg.timestamp.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}
-                  </span>
+                  {msg.id !== "welcome-msg" && (
+                    <span className={`text-[10px] uppercase font-bold tracking-wider mt-2 block ${msg.sender === "user" ? "text-background/70" : "text-text-secondary/70"}`}>
+                      {msg.timestamp.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })}
+                    </span>
+                  )}
                 </div>
               </div>
             ))}
