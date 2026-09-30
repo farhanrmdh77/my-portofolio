@@ -35,7 +35,10 @@ const galleryImages = [
   "/images/Lomba 2.jpg",
   "/images/Lomba 3.jpeg",
   "/images/LCC 2.jpg",
-  "/images/LCC 3.jpg"
+  "/images/LCC 3.jpg",
+  "/images/petrochina 1.jpeg",
+  "/images/petrochina 2.jpeg",
+  "/images/petrochina 3.jpeg",
 ]
 
 export default function Gallery() {

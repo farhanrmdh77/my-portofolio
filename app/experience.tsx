@@ -34,6 +34,10 @@ const workExperiences: ExperienceItem[] = [
             "/images/AhaConvert_PetroChina 7.jpg",
             "/images/AhaConvert_PetroChina 8.jpg",
             "/images/AhaConvert_PetroChina 9.jpg",
+            "/images/petrochina 1.jpeg",
+            "/images/petrochina 2.jpeg",
+            "/images/petrochina 3.jpeg",
+            
     ],
     certificate: "/images/Sertifikat Magang PetroChina M. Farhan Ramadhan_page-0001.jpg"
   },
