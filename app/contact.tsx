@@ -303,8 +303,11 @@ export default function Contact() {
           <div className="flex-1 overflow-y-auto p-4 md:p-6 scroll-smooth custom-scrollbar bg-thirdary/10 flex flex-col items-center">
             <div className="w-full max-w-4xl flex flex-col gap-4 pb-4">
             {chatMessages.map((msg) => (
-              <div key={msg.id} className={`flex w-full ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
-                <div className={`max-w-[85%] rounded-2xl px-5 py-3 ${msg.sender === "user" ? "bg-text-primary text-background rounded-tr-sm" : "bg-background border border-text-secondary/10 text-text-primary rounded-tl-sm shadow-sm"}`}>
+              <div 
+                key={msg.id} 
+                className={`flex w-full ${msg.sender === "user" ? "justify-end" : "justify-start"} ${msg.id === "welcome-msg" ? "sticky top-0 z-30 pt-2 pb-2 -mt-2" : ""}`}
+              >
+                <div className={`max-w-[85%] rounded-2xl px-5 py-3 ${msg.sender === "user" ? "bg-text-primary text-background rounded-tr-sm" : "bg-background border border-text-secondary/10 text-text-primary rounded-tl-sm shadow-sm"} ${msg.id === "welcome-msg" ? "shadow-lg bg-background/90 backdrop-blur-md border-text-primary/20" : ""}`}>
                   {msg.sender === "user" ? (
                     <div className="flex flex-col">
                       <span className="text-[10px] font-bold text-background/70 mb-1 opacity-70">{msg.userName || "Guest"}</span>
